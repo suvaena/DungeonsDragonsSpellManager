@@ -1,0 +1,93 @@
+<h1>View <%= @book.name %></h1>
+<p id="notice"><%= flash[:notice] %></p>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+
+<%= link_to 'All Books', books_path %>
+<%= link_to "Home", root_path %>  
+<p></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+
+
+<table>
+        <col width="100"> 
+        <tr>
+            <th>Level</th>
+            <th>Name</th>
+            <th>School</th>
+            <th>Classes</th>
+            <th>Concentration</th>
+            <th>Description</th>
+            <th colspan="3", style="width: 35%;"></th>
+         </tr>
+         <% y = @book.spells.order("level ASC, name ASC") %>
+         <% y.each do |spell| %>
+      <tr>
+        <td><%= spell.level %></td>
+        <td><%= spell.name %></td>
+        <td><%= spell.school %></td>
+          <td>
+              <% x = [] %>
+                    <% if spell.bard == true %>
+                    <% x.append('Bard') %>
+                    <% end %>
+                    <% if spell.cleric == true %>
+                    <% x.append('Cleric') %>
+                    <% end %>
+                    <% if spell.druid == true %>
+                    <% x.append('Druid') %>
+                    <% end %>
+                    <% if spell.paladin == true %>
+                    <% x.append('Paladin') %>
+                    <% end %>
+                    <% if spell.ranger == true %>
+                    <% x.append('Ranger') %>
+                    <% end %>
+                    <% if spell.sorcerer == true %>
+                    <% x.append('Sorcerer') %>
+                    <% end %>
+                    <% if spell.warlock == true %>
+                    <% x.append('Warlock') %>
+                    <% end %>
+                    <% if spell.wizard == true %>
+                    <% x.append('Wizard') %>
+                    <% end %>
+                    <%= x.join(', ') %>
+           </td>
+        <td><%= spell.concentration %></td>
+        <td><%= spell.description %></td> <br>
+        <td><%= form_with url: remove_spell_path, method: 'post', local: true do |f| %>
+            <%= hidden_field_tag(:sp_id, spell.id) %>
+            <%= f.submit 'Remove Spell' %>
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+     </table>
+
+<p>
+<%= link_to 'Add Spell', add_spell_to_book_path(@book) %>
+<%= link_to 'Edit Book', edit_book_path(@book) %>
+</p>

@@ -1,0 +1,56 @@
+<h1>Delete Spell</h1>
+
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @spell.name %>
+</p>
+<p>
+  <strong>Level:</strong>
+  <%= @spell.level %>
+</p>
+<p>
+  <strong>School:</strong>
+  <%= @spell.school %>
+</p>
+<p>
+  <strong>Bard:</strong>
+  <%= @spell.bard %>
+</p>
+<p>
+  <strong>Concentration:</strong>
+  <%= @spell.concentration %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @spell.description %>
+</p>
+
+
+<%= form_with model: @spell, local: true, method: 'delete' do |f| %>
+<%= f.submit "Confirm Delete" %>
+<% end %>
+
+<p>
+<%= link_to 'Show Users', spells_path %> | 
+<%= link_to "Home", root_path %>
+</p>

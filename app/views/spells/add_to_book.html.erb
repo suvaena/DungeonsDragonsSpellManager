@@ -1,0 +1,37 @@
+
+<p id="notice"><%= flash[:notice] %></p>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+
+<%= link_to 'All Spells', spells_path %> |
+<%= link_to "Home", root_path %>
+
+<%= form_with(model: @spell, local: true) do |form| %>
+ 
+<p>Select Book:</p>
+   <div class="field">
+    <%= form.label :book_id %>
+    <%= form.select(:book_id, Book.list) %> 
+  </div>
+ 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

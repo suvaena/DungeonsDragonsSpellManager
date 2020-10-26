@@ -1,0 +1,153 @@
+<%= form_with(xml: @spells, local: true) do |form| %>
+<p id="notice"><%= flash[:notice] %></p>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+<h1>All Spells</h1>
+
+<p>
+<%= link_to 'Create New', new_spell_path %> |
+<%= link_to "Home", root_path %>    
+</p>    
+
+<p> </p>
+<p> </p>
+
+    <table>
+        <col width="100"> 
+        <tr>
+            <th>Level:</th>
+            <th>School:</th>
+            <th>Classes:</th>
+            <th>Concentration only:</th>
+            <th colspan="3", style="width: 35%;"></th>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_0", {checked: false}) %> <%= form.label :level_0 %><%= hidden_field_tag(:l0, "0") %></td>
+            <td><%= form.check_box("conjuration", {checked: false}) %> <%= form.label :conjuration %><%= hidden_field_tag(:conj, "conjuration") %></td>
+            <td><%= form.check_box("bard", {checked: false}) %> <%= form.label :bard %><%= hidden_field_tag(:b, "bard") %></td>
+            <td><%= form.radio_button :concentration, "Yes"%> <%= form.label :concentration, "Yes", :value => "Yes"  %><%= hidden_field_tag(:yes, "yes") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_1", {checked: false}) %> <%= form.label :level_1 %><%= hidden_field_tag(:l1, "1") %></td>
+            <td><%= form.check_box("necromancy", {checked: false}) %> <%= form.label :necromancy %><%= hidden_field_tag(:necr, "necromancy") %></td>
+            <td><%= form.check_box("cleric", {checked: false}) %> <%= form.label :cleric %><%= hidden_field_tag(:c, "cleric") %></td>
+            <td><%= form.radio_button :concentration, "No"%> <%= form.label :concentration, "No", :value => "No" %><%= hidden_field_tag(:no, "no") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_2", {checked: false}) %> <%= form.label :level_2 %><%= hidden_field_tag(:l2, "2") %></td>
+            <td><%= form.check_box("evocation", {checked: false}) %> <%= form.label :evocation %><%= hidden_field_tag(:evoc, "evocation") %></td>
+            <td><%= form.check_box("druid", {checked: false}) %> <%= form.label :druid %><%= hidden_field_tag(:d, "druid") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_3", {checked: false}) %> <%= form.label :level_3 %><%= hidden_field_tag(:l3, "3") %></td>
+            <td><%= form.check_box("abjuration", {checked: false}) %> <%= form.label :abjuration %><%= hidden_field_tag(:abju, "abjuration") %></td>
+            <td><%= form.check_box("paladin", {checked: false}) %> <%= form.label :paladin %><%= hidden_field_tag(:p, "paladin") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_4", {checked: false}) %> <%= form.label :level_4 %><%= hidden_field_tag(:l4, "4") %></td>
+            <td><%= form.check_box("transmutation", {checked: false}) %> <%= form.label :transmutation %><%= hidden_field_tag(:tran, "transmutation") %></td>
+            <td><%= form.check_box("ranger", {checked: false}) %> <%= form.label :ranger %><%= hidden_field_tag(:r, "ranger") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_5", {checked: false}) %> <%= form.label :level_5 %><%= hidden_field_tag(:l5, "5") %></td>
+            <td><%= form.check_box("divination", {checked: false}) %> <%= form.label :divination %><%= hidden_field_tag(:divi, "divination") %></td>
+            <td><%= form.check_box("sorcerer", {checked: false}) %> <%= form.label :sorcerer %><%= hidden_field_tag(:s, "sorcerer") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_6", {checked: false}) %> <%= form.label :level_6 %><%= hidden_field_tag(:l6, "6") %></td>
+            <td><%= form.check_box("enchantment", {checked: false}) %> <%= form.label :enchantment %><%= hidden_field_tag(:each, "enchantment") %></td>
+            <td><%= form.check_box("warlock", {checked: false}) %> <%= form.label :warlock %><%= hidden_field_tag(:wa, "warlock") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_7", {checked: false}) %> <%= form.label :level_7 %><%= hidden_field_tag(:l7, "7") %></td>
+            <td><%= form.check_box("illusion", {checked: false}) %> <%= form.label :illusion %><%= hidden_field_tag(:illu, "illusion") %></td>
+            <td><%= form.check_box("wizard", {checked: false}) %> <%= form.label :wizard %><%= hidden_field_tag(:wi, "wizard") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_8", {checked: false}) %> <%= form.label :level_8 %><%= hidden_field_tag(:l8, "8") %></td>
+         </tr>
+         <tr>
+            <td><%= form.check_box("level_9", {checked: false}) %> <%= form.label :level_9 %><%= hidden_field_tag(:l9, "9") %></td>
+         </tr>
+    </table>
+
+        <%= form_with xml: @spells, method: 'findall', local: true do |f| %>
+            <%= f.submit 'Filter' %>
+            <% end %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Name</th>
+      <th>School</th>
+      <th>Classes</th>
+      <th>Concentration</th>
+      <th colspan="3", style="width: 35%;"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spells.each do |spell| %>
+      <tr>
+        <td><%= spell.level %></td>
+        <td><%= link_to spell.name, spell %></td>
+        <td><%= spell.school %></td>
+        
+        
+        <% x = [] %>
+        <% if spell.bard == true %>
+        <% x.append('Bard') %>
+        <% end %>
+        <% if spell.cleric == true %>
+        <% x.append('Cleric') %>
+        <% end %>
+        <% if spell.druid == true %>
+        <% x.append('Druid') %>
+        <% end %>
+        <% if spell.paladin == true %>
+        <% x.append('Paladin') %>
+        <% end %>
+        <% if spell.ranger == true %>
+        <% x.append('Ranger') %>
+        <% end %>
+        <% if spell.sorcerer == true %>
+        <% x.append('Sorcerer') %>
+        <% end %>
+        <% if spell.warlock == true %>
+        <% x.append('Warlock') %>
+        <% end %>
+        <% if spell.wizard == true %>
+        <% x.append('Wizard') %>
+        <% end %>
+        <td><%= x.join(', ') %></td>
+          
+        <td><%= spell.concentration %></td>
+        <!-- <td><%= link_to 'Show', spell %></td> -->
+        <td><%= link_to 'Edit', edit_spell_path(spell) %></td>
+        <td><%= link_to 'Add Spell to Book', add_to_book_path(spell) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% end %>

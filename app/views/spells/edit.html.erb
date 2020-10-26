@@ -1,0 +1,26 @@
+<h1>Edit <%= @spell.name %></h1>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+
+<%= render 'form', spell: @spell %>
+<%= form_with model: @spell, method: :delete, local: true do |f| %>
+<%= f.submit 'Delete' %>
+<% end %>
+

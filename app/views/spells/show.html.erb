@@ -1,0 +1,87 @@
+<h1>View <%= @spell.name %></h1>
+<p id="notice"><%= flash[:notice] %></p>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+
+<%= link_to 'All Spells', spells_path %> |
+<%= link_to "Home", root_path %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @spell.name %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @spell.level %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @spell.school %>
+</p>
+
+<p>
+  <strong>Class:</strong>
+  <% x = [] %>
+        <% if @spell.bard == true %>
+        <% x.append('Bard') %>
+        <% end %>
+        <% if @spell.cleric == true %>
+        <% x.append('Cleric') %>
+        <% end %>
+        <% if @spell.druid == true %>
+        <% x.append('Druid') %>
+        <% end %>
+        <% if @spell.paladin == true %>
+        <% x.append('Paladin') %>
+        <% end %>
+        <% if @spell.ranger == true %>
+        <% x.append('Ranger') %>
+        <% end %>
+        <% if @spell.sorcerer == true %>
+        <% x.append('Sorcerer') %>
+        <% end %>
+        <% if @spell.warlock == true %>
+        <% x.append('Warlock') %>
+        <% end %>
+        <% if @spell.wizard == true %>
+        <% x.append('Wizard') %>
+        <% end %>
+        <%= x.join(', ') %>
+</p>
+
+<p>
+  <strong>Concentration:</strong>
+  <%= @spell.concentration %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @spell.description %>
+</p>
+
+
+<p>
+<%= link_to 'Edit Spell', edit_spell_path(@spell) %> |
+<%= link_to 'Add Spell to Book', add_to_book_path(@spell) %>
+
+</p>
+

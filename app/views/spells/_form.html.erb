@@ -1,0 +1,144 @@
+<%= form_with(model: spell, local: true) do |form| %>
+<p id="notice"><%= flash[:notice] %></p>
+  <% if spell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spell.errors.count, "error") %> prevented this spell from being saved:</h2>
+
+      <ul>
+        <% spell.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+
+
+<%= link_to 'All Spells', spells_path %> |
+<%= link_to "Home", root_path %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name%>
+  </div>
+
+
+  <div class="field">
+   <%= form.label :level%>
+   <%= form.select :level, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] %>
+  </div>
+
+  <div class="field">
+   <%= form.label :school%>
+   <%= form.select :school, [selected = nil, "Conjuration", "Necromancy", "Evocation", "Abjuration", "Transmutation", "Divination", "Enchantment", "Illusion"] %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :bard %>
+    <% if spell.bard == true %>
+    <%= form.check_box("bard", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("bard", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cleric %>
+    <% if spell.cleric == true %>
+    <%= form.check_box("cleric", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("cleric", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :druid %>
+    <% if spell.druid == true %>
+    <%= form.check_box("druid", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("druid", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paladin %>
+    <% if spell.paladin == true %>
+    <%= form.check_box("paladin", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("paladin", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sorcerer %>
+    <% if spell.sorcerer == true %>
+    <%= form.check_box("sorcerer", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("sorcerer", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ranger %>
+    <% if spell.ranger == true %>
+    <%= form.check_box("ranger", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("ranger", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :warlock %>
+    <% if spell.warlock == true %>
+    <%= form.check_box("warlock", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("warlock", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wizard %>
+    <% if spell.wizard == true %>
+    <%= form.check_box("wizard", {checked: true}) %>
+    <% else %>
+    <%= form.check_box("wizard", {checked: false}) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :concentration %>
+    <%= form.label :concentration, "Yes", :value => "Yes"  %>
+    <%= form.radio_button :concentration, "Yes"%>
+    <%= form.label :concentration, "No", :value => "No" %>
+    <%= form.radio_button :concentration, "No", :checked => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+

@@ -1,0 +1,25 @@
+<h1>Create New</h1>
+
+<style>
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: purple;
+}
+</style>
+
+
+<%= link_to 'All Books', books_path %>
+<%= link_to "Home", root_path %>  
+<p></p>
+
+<%= render 'form', book: @book %>
