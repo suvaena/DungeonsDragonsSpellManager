@@ -1,24 +1,2 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+For the final course project in my data structure and algorithms course I utilized Ruby on Rails and SQL to create databases that stored characters, their levels, schools and spells. These were then displayed on a webpage and I created several functional buttons including adding a new spell, adding to a spellbook and editing features so they got updated in the SQL tables accordingly. 
